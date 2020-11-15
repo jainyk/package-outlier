@@ -1,7 +1,3 @@
-# package outlier
- This is pypi package for outlier detection 
-
-
 # Outlier detection package
 A Python based outlier detection package.
 
@@ -77,4 +73,3 @@ print(mad)
 print(outliers)
 
 ```
-

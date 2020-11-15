@@ -1,0 +1,3 @@
+[console_scripts]
+weather-reporter = package_outlier:entry_point
+

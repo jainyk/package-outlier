@@ -1,0 +1,11 @@
+LICENSE
+MANIFEST.in
+README.md
+setup.py
+package_outlier/__init__.py
+package_outlier.egg-info/PKG-INFO
+package_outlier.egg-info/SOURCES.txt
+package_outlier.egg-info/dependency_links.txt
+package_outlier.egg-info/entry_points.txt
+package_outlier.egg-info/requires.txt
+package_outlier.egg-info/top_level.txt
