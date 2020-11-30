@@ -1,3 +1,13 @@
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/package-outlier)
+![PyPI - Implementation](https://img.shields.io/pypi/implementation/package-outlier)
+![PyPI - Wheel](https://img.shields.io/pypi/wheel/package-outlier)
+![PyPI](https://img.shields.io/pypi/v/package-outlier?style=flat-square)
+[![GitHub issues](https://img.shields.io/github/issues/amit22666/package-outlier)](https://github.com/amit22666/package-outlier/issues)
+[![GitHub forks](https://img.shields.io/github/forks/amit22666/package-outlier?style=social)](https://github.com/amit22666/package-outlier/network)
+[![GitHub stars](https://img.shields.io/github/stars/amit22666/package-outlier)](https://github.com/amit22666/package-outlier/stargazers)
+[![GitHub license](https://img.shields.io/github/license/amit22666/package-outlier?style=flat-square)](https://github.com/amit22666/package-outlier/blob/main/LICENSE)
+![PyPI - Downloads](https://img.shields.io/pypi/dm/package-outlier)
+
 # package outlier
  This is pypi package for outlier detection 
 
