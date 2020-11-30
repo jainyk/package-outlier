@@ -1,3 +1,6 @@
+<img  src="logo.png" /> 
+
+
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/package-outlier)
 ![PyPI - Implementation](https://img.shields.io/pypi/implementation/package-outlier)
 ![PyPI - Wheel](https://img.shields.io/pypi/wheel/package-outlier)
