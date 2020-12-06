@@ -29,44 +29,46 @@ def do_svm_anomaly_scores(data, margin=0, kernel='rbf', degree=3, gamma='auto', 
     Parameters
     ----------
     data: numpy array like data_points
-    margin: margin of error while calculating threshold value
+
+    margin : int, default=0
+        Margin of error
+
     kernel: {‘linear’, ‘poly’, ‘rbf’, ‘sigmoid’, ‘precomputed’}, default=’rbf’
-    Specifies the kernel type to be used in the algorithm. It must be one of ‘linear’, ‘poly’, ‘rbf’, ‘sigmoid’, ‘precomputed’ or a callable. If none is given, ‘rbf’ will be used. If a callable is given it is used to precompute the kernel matrix.
+        Specifies the kernel type to be used in the algorithm. It must be one of ‘linear’, ‘poly’, ‘rbf’, ‘sigmoid’, ‘precomputed’ or a callable. If none is given, ‘rbf’ will be used. If a callable is given it is used to precompute the kernel matrix.
 
     degree: int, default=3
-    Degree of the polynomial kernel function (‘poly’). Ignored by all other kernels.
+        Degree of the polynomial kernel function (‘poly’). Ignored by all other kernels.
 
     gamma: {‘scale’, ‘auto’} or float, default=’scale’
-    Kernel coefficient for ‘rbf’, ‘poly’ and ‘sigmoid’.
+        Kernel coefficient for ‘rbf’, ‘poly’ and ‘sigmoid’.
 
-    if gamma='scale' (default) is passed then it uses 1 / (n_features * X.var()) as value of gamma,
+        if gamma='scale' (default) is passed then it uses 1 / (n_features * X.var()) as value of gamma,
 
-    if ‘auto’, uses 1 / n_features.
-
-    Changed in version 0.22: The default value of gamma changed from ‘auto’ to ‘scale’.
+        if ‘auto’, uses 1 / n_features.
 
     coef0: float, default=0.0
-    Independent term in kernel function. It is only significant in ‘poly’ and ‘sigmoid’.
+        Independent term in kernel function. It is only significant in ‘poly’ and ‘sigmoid’.
 
     tol: float, default=1e-3
-    Tolerance for stopping criterion.
+        Tolerance for stopping criterion.
 
     nu: float, default=0.5
-    An upper bound on the fraction of training errors and a lower bound of the fraction of support vectors. Should be in the interval (0, 1]. By default 0.5 will be taken.
+        An upper bound on the fraction of training errors and a lower bound of the fraction of support vectors. Should be in the interval (0, 1]. By default 0.5 will be taken.
 
     shrinking: bool, default=True
-    Whether to use the shrinking heuristic. See the User Guide.
+        Whether to use the shrinking heuristic. See the User Guide.
 
     cache_size: float, default=200
-    Specify the size of the kernel cache (in MB).
+        Specify the size of the kernel cache (in MB).
 
     verbose: bool, default=False
-    Enable verbose output. Note that this setting takes advantage of a per-process runtime setting in libsvm that, if enabled, may not work properly in a multithreaded context.
+        Enable verbose output. Note that this setting takes advantage of a per-process runtime setting in libsvm that, if enabled, may not work properly in a multithreaded context.
 
     max_iter: int, default=-1
-    Hard limit on iterations within solver, or -1 for no limit.
+        Hard limit on iterations within solver, or -1 for no limit.
+
     all_data: numpy like data
-    threshold: value below which points are considered as anomaly"""
+    """
 
     oc_svm = svm.OneClassSVM(kernel, degree, gamma, coef0, tol, nu, shrinking, cache_size, verbose, max_iter).fit(data)
     scores = oc_svm.decision_function(data).flatten()
