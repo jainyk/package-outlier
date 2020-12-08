@@ -3,24 +3,19 @@ import scipy.stats as ss
 import numpy as np
 import matplotlib
 import pandas as pd
-'''
 import random
-# Given points A, B and C, this function returns the acute angle between vectors AB and AC
-# using the dot product between these vectors
-np.random.seed(16) # include a seed for reproducibility
+import math
 
-# generate the normal data
-normal_mean = np.array([1.0, 2.0])
-normal_covariance = np.array([[0.2, 0.0], [0.0, 0.1]])
-normal_data = np.random.multivariate_normal(normal_mean, normal_covariance, 100)
 
-# generate the anomalous data
-anomaly_mean = np.array([6.0, 8.0])
-anomaly_covariance = np.array([[2.0, 0.0], [0.0, 4.0]])
-anomaly_data = np.random.multivariate_normal(anomaly_mean, anomaly_covariance, 10)
-
-final_data = np.concatenate((normal_data, anomaly_data), axis=0)
-all_data = np.concatenate((normal_data, anomaly_data), axis=0)
+def iqr_threshold_method(scores, margin):
+    q1 = np.percentile(scores, 25, interpolation='midpoint')
+    q3 = np.percentile(scores, 75, interpolation='midpoint')
+    iqr = q3-q1
+    lower_range = q1 - (1.5 * iqr)
+    upper_range = q3 + (1.5 * iqr)
+    lower_range = lower_range - margin
+    upper_range = upper_range + margin
+    return lower_range, upper_range
 
 
 def angle(point1, point2, point3):
@@ -28,17 +23,6 @@ def angle(point1, point2, point3):
     v31 = np.subtract(point3, point1)
     dot_product = (v21*v31).sum()
     normalization = np.linalg.norm(v21)*np.linalg.norm(v31)
-    print(type(normalization))
-    print(normalization)
-    acute_angle = np.arccos(dot_product/normalization)
-    return acute_angle
-'''
-
-def angle(point1, point2, point3):
-    v21 = np.subtract(point2, point1)
-    v31 = np.subtract(point3, point1)
-    dot_product = (v21*v31).sum()
-    normalization = (np.linalg.norm(v21)**2) * (np.linalg.norm(v31)**2)
     acute_angle = np.arccos(dot_product/normalization)
     return acute_angle
 
@@ -48,8 +32,7 @@ def eval_angle_point(point, data):
     for index_b, b in enumerate(data):
         if (np.array_equal(b, point)):
             continue
-        # ensure point c comes later in array that point b
-        # so we don't double count points
+
         for c in data[index_b + 1:]:
             if (np.array_equal(c, point)) or (np.array_equal(c, b)):
                 continue
@@ -58,21 +41,49 @@ def eval_angle_point(point, data):
 
 
 
-def angle_based_anomaly_detection(points, all_data, threshold):
+def angle_based_anomaly_detection(data, margin=0):
     """Returns numpy array with data points labelled as outliers
     Parameters
     ----------
-    points: numpy array like data_point
-    all_data: numpy like data
-    threshold: value below which points are considered as anomaly"""
+    data: numpy 2d array like data points
 
-    df_ = pd.DataFrame(columns=['point','angle variance'])
-    for index2, item2 in enumerate(points):
-        df_.loc[index2] = [item2, np.var(eval_angle_point(item2, all_data))]
+    margin: int, default=0
+        Margin of error
+    """
+    no_of_data_point = data.shape[0]
+    variance_of_each_datapoint = []
 
-    outliers = df_[df_['angle variance'] < threshold ]
-    outliers = np.stack(outliers['point'].to_numpy())
-    return outliers
+    for i in range(0, no_of_data_point):
+        point = data[i]
+        temp = eval_angle_point(point, data)
+        variance_of_each_datapoint.append(np.var(temp))
+
+    lower_range, upper_range = iqr_threshold_method(variance_of_each_datapoint, margin)
+
+    outlier_points = []
+
+    for i in range(0, no_of_data_point):
+        if variance_of_each_datapoint[i] < lower_range or variance_of_each_datapoint[i] > upper_range:
+            outlier_points.append(data[i])
+
+    return outlier_points, lower_range, upper_range, variance_of_each_datapoint
 
 
-#------------------------------------------------------------------------------
+if __name__=='__main__':
+    np.random.seed(16)
+
+    normal_mean = np.array([1.0, 2.0])
+    normal_covariance = np.array([[0.2, 0.0], [0.0, 0.1]])
+    normal_data = np.random.multivariate_normal(normal_mean, normal_covariance, 10)
+
+    anomaly_mean = np.array([6.0, 8.0])
+    anomaly_covariance = np.array([[2.0, 0.0], [0.0, 4.0]])
+    anomaly_data = np.random.multivariate_normal(anomaly_mean, anomaly_covariance, 10)
+    all_data = np.concatenate((normal_data, anomaly_data), axis=0)
+
+#    point = all_data[0]
+    #print(point)
+    #res = eval_angle_point(point, all_data)
+    res = angle_based_anomaly_detection(all_data)
+    print(res)
+    #print(res)
