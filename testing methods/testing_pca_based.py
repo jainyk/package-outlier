@@ -49,7 +49,7 @@ def do_pca_anomaly_scores(obs,
 # find a better way to get threshold value
 # one could be determine outlier in pca score and use it as threshold
 # similar issue with testing_svm_based
-def pca_based_outlier(data, n_components, margin=0):
+def PcaOutlier(data, n_components, margin=0):
 
     """Returns numpy array with data points labelled as outliers
     Parameters
@@ -81,5 +81,5 @@ if __name__=='__main__':
                             [-1, -0.5], [-0.5, -0.25], [0, 0], [0.5, 0.26],
                             [1, 0.5],  [1.5, 0.75], [2.5, 1.25], [3, 1.5]])
 
-    res = pca_based_outlier(pca_example, 1)
+    res = PcaOutlier(pca_example, 1)
     print(res)

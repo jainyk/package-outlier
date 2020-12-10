@@ -23,7 +23,7 @@ def iqr_threshold_method(scores, margin):
     return lower_range, upper_range
 
 
-def regression_based_outlier(x_train, y_train,  margin=0, fit_intercept=True, normalize=False, copy_X=True, n_jobs=None):
+def RegressionOutlier(x_train, y_train,  margin=0, fit_intercept=True, normalize=False, copy_X=True, n_jobs=None):
     """Returns numpy array with data points labelled as outliers
     Parameters
     ----------
@@ -46,7 +46,7 @@ def regression_based_outlier(x_train, y_train,  margin=0, fit_intercept=True, no
         If True, X will be copied; else, it may be overwritten.
 
     n_jobs: int, default=None
-        The number of jobs to use for the computation. This will only provide speedup for n_targets > 1 and sufficient large problems. None means 1 unless in a joblib.parallel_backend context. -1 means using all processors. 
+        The number of jobs to use for the computation. This will only provide speedup for n_targets > 1 and sufficient large problems. None means 1 unless in a joblib.parallel_backend context. -1 means using all processors.
 """
     lr_train = linear_model.LinearRegression(fit_intercept=fit_intercept, normalize=normalize, copy_X=copy_X, n_jobs=n_jobs).fit(x_train, y_train)
 
@@ -68,5 +68,5 @@ if __name__=='__main__':
                     [57, 70, 76, 84, 91]]).T
     x_train = np.array([1,2,3,4,5]).reshape(-1,1)
     x_test = np.array([57,70,99,84,91]).reshape(-1,1)
-    res = regression_based_outlier(x_train, x_test, 0.5)
+    res = RegressionOutlier(x_train, x_test, 0.5)
     print(res)

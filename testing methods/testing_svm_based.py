@@ -24,7 +24,7 @@ def iqr_threshold_method(scores, margin):
     return lower_range, upper_range
 
 
-def do_svm_anomaly_scores(data, margin=0, kernel='rbf', degree=3, gamma='auto', coef0=0.0, tol=0.001, nu=0.5, shrinking=True, cache_size=200, verbose=False, max_iter=-1):
+def SvmOutlier(data, margin=0, kernel='rbf', degree=3, gamma='auto', coef0=0.0, tol=0.001, nu=0.5, shrinking=True, cache_size=200, verbose=False, max_iter=-1):
     """Returns numpy array with data points labelled as outliers
     Parameters
     ----------
@@ -70,7 +70,7 @@ def do_svm_anomaly_scores(data, margin=0, kernel='rbf', degree=3, gamma='auto', 
     all_data: numpy like data
     """
 
-    oc_svm = svm.OneClassSVM(kernel, degree, gamma, coef0, tol, nu, shrinking, cache_size, verbose, max_iter).fit(data)
+    oc_svm = svm.OneClassSVM(kernel=kernel, degree=degree, gamma=gamma, coef0=coef0, tol=tol, nu=nu, shrinking=shrinking, cache_size=cache_size, verbose=verbose, max_iter=max_iter).fit(data)
     scores = oc_svm.decision_function(data).flatten()
 
     # Find the largest score and use it to normalize the scores
@@ -104,5 +104,5 @@ if __name__=='__main__':
     spike_1 = np.array([[6.0,6.0]]) # Anomaly 1
     spike_2 = np.array([[0.0,10]])  # Anomaly 2
     cluster_data = np.concatenate([blobs_X, spike_1, spike_2])
-    res = do_svm_anomaly_scores(cluster_data, 0.01)
+    res = SvmOutlier(cluster_data, 0.01)
     print(res)

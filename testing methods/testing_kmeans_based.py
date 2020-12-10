@@ -18,7 +18,7 @@ def iqr_threshold_method(scores, margin):
     return lower_range, upper_range
 
 
-def kmeans_outlier_detection(
+def KmeansOutlier(
     data,
     margin=0,
     n_clusters=8,
@@ -142,5 +142,5 @@ if __name__=='__main__':
     anomalies, _ = sk_data.make_blobs(centers=[[5,5]], n_samples=5, cluster_std=3, random_state=42)
 
     data = np.concatenate([blobs_X, anomalies])
-    res = kmeans_outlier_detection(data)
+    res = KmeansOutlier(data)
     print(res)

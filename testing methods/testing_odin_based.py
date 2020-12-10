@@ -19,7 +19,7 @@ def iqr_threshold_method(scores, margin):
     return lower_range, upper_range
 
 
-def do_odin_outlier_scores(
+def OdinOutlier(
     data,
     margin=0,
     n_neighbors=5,
@@ -101,5 +101,5 @@ def do_odin_outlier_scores(
 if __name__=='__main__':
     X2 = np.array([[0.9, 1], [0, 1], [1, 0], [0, 0], [0.5, 0.5], [0.2, 0.5], [1, 0.5], [2, 2], [1.9, 2]])
 
-    scores_odin= do_odin_outlier_scores(X2,0,3)
+    scores_odin= OdinOutlier(X2,0,3)
     print(scores_odin)
