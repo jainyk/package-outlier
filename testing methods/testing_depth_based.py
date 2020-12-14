@@ -28,7 +28,7 @@ def depth_calculator(data, dict, count):
     return dict # returns dictionary with data_point as tuple and assigned value equal to depth
 
 
-def depth_based_anomaly_detection(points, threshold):
+def DepthOutlier(points, threshold):
     """Returns numpy array with data points labelled as outliers
     Parameters
     ----------
@@ -37,5 +37,13 @@ def depth_based_anomaly_detection(points, threshold):
     depth_dict = {} # empty dictionary for depth_calculator
     depth_calculator(points, depth_dict, 1.0) # initial hull has depth 1.0
     anomaly_points = [data_point for data_point, depth in depth_dict.items() if depth < threshold] # data_point with depth less than given threshold is returned as anomaly point
+
     anomaly_points = np.array(anomaly_points)
     return anomaly_points
+
+
+if __name__=='__main__':
+    np.random.seed(20)
+    points = np.random.rand(30, 2)
+    res = DepthOutlier(points, 2)
+    print(res)

@@ -41,7 +41,7 @@ def eval_angle_point(point, data):
 
 
 
-def angle_based_anomaly_detection(data, margin=0):
+def AngleOutlier(data, margin=0):
     """Returns numpy array with data points labelled as outliers
     Parameters
     ----------
@@ -84,6 +84,6 @@ if __name__=='__main__':
 #    point = all_data[0]
     #print(point)
     #res = eval_angle_point(point, all_data)
-    res = angle_based_anomaly_detection(all_data)
+    res = AngleOutlier(all_data)
     print(res)
     #print(res)
