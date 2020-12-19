@@ -11,12 +11,18 @@
 [![GitHub license](https://img.shields.io/github/license/amit22666/package-outlier?style=flat-square)](https://github.com/amit22666/package-outlier/blob/main/LICENSE)
 ![PyPI - Downloads](https://img.shields.io/pypi/dm/package-outlier)
 
+# Table of contents
+
+- [package outlier](#package-outlier)
+  * [Install](#install)
+  * [Outlier detection by zscore](#outlier-detection-by-zscore)
+  * [Contribute](#contribute)
+
+<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
 # package outlier
  This is pypi package for outlier detection 
  
-# Outlier detection package
-A Python based outlier detection package.
-
 ## Install
 Read the online Installation instructions.
 
