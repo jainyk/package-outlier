@@ -15,7 +15,8 @@
 
 - [package outlier](#package-outlier)
   * [Install](#install)
-  * [Zscore based outlier detection](#outlier-detection-by-zscore)
+  * [Zscore based outlier detection](#zscore-based-outlier-detection)
+  * [Modified Zscore based outlier detection](#modified-zscore-based-outlier-detection)
   * [Angle based outlier detection](#angle-based-outlier-detection)
   * [Depth based outlier detection](#depth-based-outlier-detection)
   * [Linear regression based outlier detection](#linear-regression-based-outlier-detection)
@@ -50,14 +51,14 @@ This will display a message and download if the module is not already installed.
       upper_range = upper_range + margin
 
 
-## Outlier detection by zscore
+## Zscore based outlier detection
 Zscore is a common method to detect anomaly in 1-D.
 For a given data point zscore is calculated by:\
 zscore = data_point - mean / std_dev
 
 The function take data and threshold value as required argument and returns data points that are outliers.
 
-## Outlier detection by modified_zscore
+## Modified zscore based outlier detection
 Mean and standard deviation are themselves prone to outliers that's why we use median instead of mean and median absolute deviation instead of mean absolute deviation.\
 For more info on median absolute deviation refer to https://en.wikipedia.org/wiki/Median_absolute_deviation.
 
@@ -88,6 +89,7 @@ it makes with any other two data
 points doesn’t vary much as you
 choose different data points
 Here we used cosθ to calculate angle between 2 vectors.
+<img  src="testing methods/angle.png" /> 
 
 ## Depth based outlier detection
  Outliers lie at the edge of the data space. According to this concept we organize the data in layers
@@ -95,12 +97,13 @@ in which each layer is labeled by its depth. The outermost layer is depth = 1, t
 depth = 2 and so on. Finally outliers are those points with a depth below a predetermined threshold.
 This implementation uses a convex hull to implement this depth based method. Convex hull is defined as the smallest convex set that contains the data.
 This method is typically efficient only for two and three dimensional data. Outliers are points with a depth ≤ n.
+<img  src="testing methods/convex hull.png" /> 
 
 ## Linear regression based outlier detection
 You should be familiar with linear regression in order to understand this method. In this vertical distance from straight line fit is used to score points.
 Outliers are far from line i.e, the distance between regression fitted line and data point is far. A threshold value is calculated using these scores in order to label data point as outlier. 
 NOTE that linear regression in itself is sensitive to outliers
-
+<img  src="testing methods/lin reg.png" /> 
 
 ## PCA based outlier detection
 
@@ -109,6 +112,7 @@ The principal components are linear combinations of the original features.
 Usually few principal components matter since they accompanies most of the variance of the data and hence most of the data aligns along a lower-dimensional feature space.
 Outliers are those points that don’t align with this subspace. Distance of the anomaly from the aligned data can be used as an anomaly score. Outlier itself can affect the modelling 
 hence it should be modelled on normal data point and then should be used to detect outliers.
+<img  src="testing methods/pca.png" /> 
 
 ## SVM based outlier detection
 In this one class SVM is used for outlier detection. Basically the idea is data points lieing to one side of hyperplane is considered as normal 
@@ -124,6 +128,8 @@ other tuning parameters of SVMs
 results
 3. To address this issue, sampling of subsets of the data and averaging of scores
 is recommended.
+<img  src="testing methods/svm.png" /> 
+
 
 ## KNN based outlier detection
 The basic idea is anomalies are far away from neighboring points. In this for each point, distance is calculated to k nearest neighbors.
@@ -164,7 +170,7 @@ query point
    – LOF ≈ 1 similar density as neighbors
    – LOF < 1 higher density than neighbors (normal point)
    – LOF > 1 lower density than neighbors (outlier)
-
+<img  src="testing methods/lof.png" /> 
 
 ## Contribute
 You've discovered a bug or something else you want to change - excellent!
