@@ -15,15 +15,15 @@
 
 - [package outlier](#package-outlier)
   * [Install](#install)
-  * [Outlier detection by zscore](#outlier-detection-by-zscore)
-  * [Angle based outlier detection](#outlier-detection-by-zscore)
-  * [Depth based outlier detection](#outlier-detection-by-zscore)
-  * [Linear regression based outlier detection](#outlier-detection-by-zscore)
-  * [SVM based outlier detection](#outlier-detection-by-zscore)
-  * [KNN based outlier detection](#outlier-detection-by-zscore)
-  * [ODIN based outlier detection](#outlier-detection-by-zscore)
-  * [K means based outlier detection](#outlier-detection-by-zscore)
-  * [LOF based outlier detection](#outlier-detection-by-zscore)
+  * [Zscore based outlier detection](#outlier-detection-by-zscore)
+  * [Angle based outlier detection](#angle-based-outlier-detection)
+  * [Depth based outlier detection](#depth-based-outlier-detection)
+  * [Linear regression based outlier detection](#linear-regression-based-outlier-detection)
+  * [SVM based outlier detection](#svm-based-outlier-detection)
+  * [KNN based outlier detection](#knn-based-outlier-detection)
+  * [ODIN based outlier detection](#odin-based-outlier-detection)
+  * [K means based outlier detection](#k-means-based-outlier-detection)
+  * [LOF based outlier detection](#lof-based-outlier-detection)
   * [Contribute](#contribute)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
@@ -40,7 +40,7 @@ Install the latest version of package-outlier
 
 ```$ pip install package-outlier```
 
-This will display a message and download if the module is not already installed. It will then install package-outlier and all its dependencies. You may need root privileges to install setuptools.
+This will display a message and download if the module is not already installed. It will then install package-outlier and all its dependencies.
 
 ## NOTE: In all implementations we have used interquartile range based method to define the threshold value. 
       The formula used for evaluation is as follows:
