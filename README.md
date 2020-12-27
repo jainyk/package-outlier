@@ -11,10 +11,13 @@
 [![GitHub license](https://img.shields.io/github/license/amit22666/package-outlier?style=flat-square)](https://github.com/amit22666/package-outlier/blob/main/LICENSE)
 ![PyPI - Downloads](https://img.shields.io/pypi/dm/package-outlier)
 
+
+
 # Table of contents
 
 - [package outlier](#package-outlier)
   * [Install](#install)
+  * [How to call a function](#how-to-call-a-function)
   * [Zscore based outlier detection](#zscore-based-outlier-detection)
   * [Modified Zscore based outlier detection](#modified-zscore-based-outlier-detection)
   * [Angle based outlier detection](#angle-based-outlier-detection)
@@ -43,13 +46,16 @@ Install the latest version of package-outlier
 
 This will display a message and download if the module is not already installed. It will then install package-outlier and all its dependencies.
 
+## How to call a function
+
+<img  src="testing methods/function call.png" /> 
+
 ## NOTE: In all implementations we have used interquartile range based method to define the threshold value. 
       The formula used for evaluation is as follows:
       lower_range = q1 - (1.5 * iqr)
       upper_range = q3 + (1.5 * iqr)
       lower_range = lower_range - margin
       upper_range = upper_range + margin
-
 
 ## Zscore based outlier detection
 Zscore is a common method to detect anomaly in 1-D.
@@ -172,6 +178,28 @@ query point
    – LOF > 1 lower density than neighbors (outlier)
 <img  src="testing methods/lof.png" /> 
 
+
+## Challenges faced 
+
+Imprecise boundary between normal and outlier behavior since at times outlier observation lying close to the boundary could actually be normal, and vice-versa. 
+
+In many domains normal behavior keeps changing and  evolving and may not be current to be a representative in the future.
+
+After generating scores from various methods, it was difficult to decide a threshold value.
+
+Availability of labeled data for training/ validation of models used by outlier detection techniques.
+
+Noise in the data which tends to be similar to the actual outliers and hence difficult to distinguish and remove. 
+
+
+## Application
+
+Fraud Detection Intrusion Detection Fault/ Damage Detection Crime Investigation/ Counter Terror Op Planning Medical Informatics
+
+
+## Tech stack used
+
+
 ## Contribute
 You've discovered a bug or something else you want to change - excellent!
 
@@ -179,6 +207,5 @@ You've worked out a way to fix it – even better!
 
 You want to tell us about it – best of all!
 
-Start at the contributing guide!
 
 
