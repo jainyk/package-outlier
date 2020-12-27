@@ -7,7 +7,7 @@ def entry_point():
     pass
 
 
-def zscore_and_anomaly_detection(data, threshold, flag=1, axis=0, ddof=0, nan_policy='propagate'):
+def ZscoreOutlier(data, threshold, flag=1, axis=0, ddof=0, nan_policy='propagate'):
 # Calculate zscore using scipy
     zscore = ss.zscore(data, axis, ddof, nan_policy)
 
@@ -19,7 +19,7 @@ def zscore_and_anomaly_detection(data, threshold, flag=1, axis=0, ddof=0, nan_po
     return zscore, data[mask]
 
 
-def modified_zscore_and_anomaly_detection(data, threshold, flag=1, consistency_correction=1.4826):
+def ModifiedZscoreOutlier(data, threshold, flag=1, consistency_correction=1.4826):
     """
     Returns the modified z score and Median Absolute Deviation (MAD) from the scores in data.
     The consistency_correction factor converts the MAD to the standard deviation for a given
