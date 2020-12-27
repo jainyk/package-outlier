@@ -28,7 +28,11 @@
   * [ODIN based outlier detection](#odin-based-outlier-detection)
   * [K means based outlier detection](#k-means-based-outlier-detection)
   * [LOF based outlier detection](#lof-based-outlier-detection)
+  * [Challenges faced](#challenges-faced)
+  * [Application](#application)
   * [Contribute](#contribute)
+
+
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
