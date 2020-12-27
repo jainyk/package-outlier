@@ -16,7 +16,7 @@ def ZscoreOutlier(data, threshold, flag=1, axis=0, ddof=0, nan_policy='propagate
         mask = zscore > threshold
     if flag == 0:
         mask = zscore < threshold
-    return zscore, data[mask]
+    return data[mask]
 
 
 def ModifiedZscoreOutlier(data, threshold, flag=1, consistency_correction=1.4826):
@@ -39,4 +39,4 @@ def ModifiedZscoreOutlier(data, threshold, flag=1, consistency_correction=1.4826
     if flag == 0:
         mask = mod_zscore < threshold
 
-    return mod_zscore, mad, data[mask]
+    return data[mask]
