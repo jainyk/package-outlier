@@ -1,3 +1,6 @@
 scipy
 numpy
 pandas
+scikit-learn
+statistics
+datetime

@@ -80,7 +80,8 @@ if __name__=='__main__':
     anomaly_covariance = np.array([[2.0, 0.0], [0.0, 4.0]])
     anomaly_data = np.random.multivariate_normal(anomaly_mean, anomaly_covariance, 10)
     all_data = np.concatenate((normal_data, anomaly_data), axis=0)
-
+    print(all_data)
+    print(all_data.shape)
 #    point = all_data[0]
     #print(point)
     #res = eval_angle_point(point, all_data)
