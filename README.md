@@ -214,8 +214,10 @@ Noise in the data which tends to be similar to the actual outliers and hence dif
 
 
 ## Contribute
-If you've discovered a bug or something else you want to change - excellent!
-You've worked out a way to fix it – even better!
-You want to tell us about it – best of all!
-Just send a pull request or email me!
-Email - vjiit97@gmail.com !
+```
+     If you've discovered a bug or something else you want to change - excellent!
+     You've worked out a way to fix it – even better!
+     You want to tell us about it – best of all!
+     Just send a pull request or email me!
+     Email - vjiit97@gmail.com !
+```
