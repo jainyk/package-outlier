@@ -1,4 +1,4 @@
-<img  src="logo.png" /> 
+<img  src="logo.png" />
 
 
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/package-outlier)
@@ -34,11 +34,10 @@
 
 
 
-<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
 # package outlier
- This is pypi package for outlier detection 
- 
+ This is pypi package for outlier detection
+
 ## Install
 Read the online Installation instructions.
 
@@ -50,11 +49,20 @@ Install the latest version of package-outlier
 
 This will display a message and download if the module is not already installed. It will then install package-outlier and all its dependencies.
 
+## Dependencies
+```
+     Python
+     NumPy
+     SciPy
+     scikit-learn
+     pandas
+```
+
 ## How to call a function
 
-<img  src="testing methods/function call.png" /> 
+<img  src="testing methods/function call.png" />
 
-## NOTE: In all implementations we have used interquartile range based method to define the threshold value. 
+## NOTE: In all implementations we have used interquartile range based method to define the threshold value.
       The formula used for evaluation is as follows:
       lower_range = q1 - (1.5 * iqr)
       upper_range = q3 + (1.5 * iqr)
@@ -99,7 +107,7 @@ it makes with any other two data
 points doesn’t vary much as you
 choose different data points
 Here we used cosθ to calculate angle between 2 vectors.
-<img  src="testing methods/angle.png" /> 
+<img  src="testing methods/angle.png" />
 
 ## Depth based outlier detection
  Outliers lie at the edge of the data space. According to this concept we organize the data in layers
@@ -107,30 +115,30 @@ in which each layer is labeled by its depth. The outermost layer is depth = 1, t
 depth = 2 and so on. Finally outliers are those points with a depth below a predetermined threshold.
 This implementation uses a convex hull to implement this depth based method. Convex hull is defined as the smallest convex set that contains the data.
 This method is typically efficient only for two and three dimensional data. Outliers are points with a depth ≤ n.
-<img  src="testing methods/convex hull.png" /> 
+<img  src="testing methods/convex hull.png" />
 
 ## Linear regression based outlier detection
 You should be familiar with linear regression in order to understand this method. In this vertical distance from straight line fit is used to score points.
-Outliers are far from line i.e, the distance between regression fitted line and data point is far. A threshold value is calculated using these scores in order to label data point as outlier. 
+Outliers are far from line i.e, the distance between regression fitted line and data point is far. A threshold value is calculated using these scores in order to label data point as outlier.
 NOTE that linear regression in itself is sensitive to outliers
-<img  src="testing methods/lin reg.png" /> 
+<img  src="testing methods/lin reg.png" />
 
 ## PCA based outlier detection
 
 You should be familiar with PCA in order to understand this method.
 The principal components are linear combinations of the original features.
 Usually few principal components matter since they accompanies most of the variance of the data and hence most of the data aligns along a lower-dimensional feature space.
-Outliers are those points that don’t align with this subspace. Distance of the anomaly from the aligned data can be used as an anomaly score. Outlier itself can affect the modelling 
+Outliers are those points that don’t align with this subspace. Distance of the anomaly from the aligned data can be used as an anomaly score. Outlier itself can affect the modelling
 hence it should be modelled on normal data point and then should be used to detect outliers.
-<img  src="testing methods/pca.png" /> 
+<img  src="testing methods/pca.png" />
 
 ## SVM based outlier detection
-In this one class SVM is used for outlier detection. Basically the idea is data points lieing to one side of hyperplane is considered as normal 
+In this one class SVM is used for outlier detection. Basically the idea is data points lieing to one side of hyperplane is considered as normal
 and other side as data points is labelled as outliers. Two key assumptions while applying it are:
 1. Data provided all belong to normal class
    Since data may contain anomalies this results in a noisy model
 2. The origin belongs to the anomaly class
-   Rarely use data as is. Origin is that of kernel-based transformed data 
+   Rarely use data as is. Origin is that of kernel-based transformed data
 NOTE:
 1. The shape of the decision boundary is sensitive to the choice of kernel and
 other tuning parameters of SVMs
@@ -138,14 +146,14 @@ other tuning parameters of SVMs
 results
 3. To address this issue, sampling of subsets of the data and averaging of scores
 is recommended.
-<img  src="testing methods/svm.png" /> 
+<img  src="testing methods/svm.png" />
 
 
 ## KNN based outlier detection
 The basic idea is anomalies are far away from neighboring points. In this for each point, distance is calculated to k nearest neighbors.
 Now we can take either take arithematic mean or harmonic mean of the obtained KNN distances to set the threshold value and values
 exceeding this limit is considered as outlier.
-NOTE: 
+NOTE:
 1. The value of k and scoring process affect the results
 2. Choosing k requires judgment hence a range of values is used
 3. It is a good idea to check the scoring process, if results vary wildly with the choice of distance metric and scoring threshold,
@@ -160,15 +168,15 @@ hence it is termed as outlier.
 We should be familiar with the working of k-means while diving to this method.
 The basic idea is outliers are far away clusters (dense collections of points).
 Now usually there are 3 types of distances to be considered like distance from cluster centroid,
-distance from cluster edge and Mahalanobis distances to each cluster. 
-NOTE: 
+distance from cluster edge and Mahalanobis distances to each cluster.
+NOTE:
 1. Choice of k affects the results
 2. Initial choice of centroids can also affect results
 
 ## LOF based outlier detection
 It is a density based method in which outliers are located in sparse regions. It defines outliers with respect to local region, Compares local density of query point with local density of neighbors
  and if the local density of the query point is much lower then it is labelled as outlier.
-The process is as followed- 
+The process is as followed-
 1. Define local region around query point by its k nearest neighbors (“query
 neighbors”)
 2. For far away query neighbors, use distance between query neighbor and
@@ -180,12 +188,12 @@ query point
    – LOF ≈ 1 similar density as neighbors
    – LOF < 1 higher density than neighbors (normal point)
    – LOF > 1 lower density than neighbors (outlier)
-<img  src="testing methods/lof.png" /> 
+<img  src="testing methods/lof.png" />
 
 
-## Challenges faced 
+## Challenges faced
 
-Imprecise boundary between normal and outlier behavior since at times outlier observation lying close to the boundary could actually be normal, and vice-versa. 
+Imprecise boundary between normal and outlier behavior since at times outlier observation lying close to the boundary could actually be normal, and vice-versa.
 
 In many domains normal behavior keeps changing and  evolving and may not be current to be a representative in the future.
 
@@ -193,23 +201,21 @@ After generating scores from various methods, it was difficult to decide a thres
 
 Availability of labeled data for training/ validation of models used by outlier detection techniques.
 
-Noise in the data which tends to be similar to the actual outliers and hence difficult to distinguish and remove. 
+Noise in the data which tends to be similar to the actual outliers and hence difficult to distinguish and remove.
 
 
 ## Application
-
-Fraud Detection Intrusion Detection Fault/ Damage Detection Crime Investigation/ Counter Terror Op Planning Medical Informatics
-
-
-## Tech stack used
+```
+     Fraud Detection
+     Intrusion Detection
+     Counter Terror Op Planning
+     Medical Informatics
+```
 
 
 ## Contribute
-You've discovered a bug or something else you want to change - excellent!
-
+If you've discovered a bug or something else you want to change - excellent!
 You've worked out a way to fix it – even better!
-
 You want to tell us about it – best of all!
-
-
-
+Just send a pull request or email me!
+Email - vjiit97@gmail.com !
